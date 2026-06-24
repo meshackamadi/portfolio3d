@@ -1,4 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, memo } from 'react'
+import FadeIn from '../components/FadeIn'
+
+// Create a memoized heading component
+const CatalogueHeading = memo(() => (
+  <div className="w-full max-w-xl mx-auto px-4 sm:px-6 md:px-8 mb-12 sm:mb-16 md:mb-20">
+    <FadeIn delay={0} y={40} className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(3rem,12vw,90px)]">
+      Catalogue
+    </FadeIn>
+  </div>
+))
 
 const IMAGES = [
   'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
@@ -57,6 +67,7 @@ export default function MarqueeSection() {
 
   return (
     <section ref={ref} className="pt-24 sm:pt-32 md:pt-40 pb-10 bg-pagebg">
+      <CatalogueHeading />
       <div className="flex flex-col gap-3">
         <div className="flex gap-3 will-change-transform transform" style={{ transform: `translateX(${offset - 200}px)` }}>
           {Array(3).fill(null).map((_, rep) => (

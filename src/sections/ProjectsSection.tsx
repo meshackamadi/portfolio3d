@@ -24,7 +24,7 @@ const PROJECTS = [
       './TotalPermits.png',
       './TotalStatePermits.png'
     ],
-    demo: '/InteractiveSFBuildingPermit.html'
+    demo: './InteractiveSFBuildingPermit.html'
   }
   ,
   {
@@ -36,7 +36,7 @@ const PROJECTS = [
       './SeasonaltrendbyAge.png',
       './SeasonalTrends.png'
     ],
-    demo: '/FiveThirtyEight.html'
+    demo: './FiveThirtyEight.html'
   }
 ]
 
@@ -104,8 +104,7 @@ export default function ProjectsSection() {
                       <h3 className="font-medium text-[clamp(1rem,2.2vw,2.1rem)]">{p.title}</h3>
                     </div>
                     <div className="flex items-center gap-3">
-                      <LiveProjectButton onClick={() => window.open(p.demo || '#', '_blank')}>Open</LiveProjectButton>
-                      {p.demo && <LiveProjectButton onClick={() => openDemo(p.demo, p.title)}>View Demo</LiveProjectButton>}
+                      {p.demo && <LiveProjectButton onClick={() => openDemo(p.demo, p.title)}>Open</LiveProjectButton>}
                     </div>
                   </div>
 
