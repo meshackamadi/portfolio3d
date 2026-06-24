@@ -9,9 +9,9 @@ const PROJECTS = [
     title: 'Blacc-Farms',
     tag: 'Client',
     images: [
-      '/FarmStats.png',
-      '/reasonForBlaccFarms.png',
-      '/hero2.png',
+      './FarmStats.png',
+      './reasonForBlaccFarms.png',
+      './hero2.png',
     ],
     demo: 'https://meshackamadi.github.io/blacc-farms/'
   },
@@ -20,9 +20,9 @@ const PROJECTS = [
     title: 'Single-Family Building Permit',
     tag: 'Personal',
     images: [
-      '/BeforeCrisis.png',
-      '/TotalPermits.png',
-      '/TotalStatePermits.png'
+      './BeforeCrisis.png',
+      './TotalPermits.png',
+      './TotalStatePermits.png'
     ],
     demo: '/InteractiveSFBuildingPermit.html'
   }
@@ -32,9 +32,9 @@ const PROJECTS = [
     title: 'FiveThirtyEight Demo',
     tag: 'Personal',
     images: [
-      '/GunDeathsbyAge.png',
-      '/SeasonaltrendbyAge.png',
-      '/SeasonalTrends.png'
+      './GunDeathsbyAge.png',
+      './SeasonaltrendbyAge.png',
+      './SeasonalTrends.png'
     ],
     demo: '/FiveThirtyEight.html'
   }

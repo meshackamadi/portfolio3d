@@ -29,7 +29,7 @@ export default function HeroSection() {
 
       <FadeIn delay={0.6} y={30} className="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0">
         <Magnet padding={150} strength={3} className="w-[280px] sm:w-[310px] md:w-[380px] lg:w-[520px]">
-          <img src="src/components/meshbg.png" alt="portrait" className="w-full h-auto object-cover" loading="lazy"/>
+          <img src="./meshbg.png" alt="portrait" className="w-full h-auto object-cover" loading="lazy"/>
         </Magnet>
       </FadeIn>
     </section>
