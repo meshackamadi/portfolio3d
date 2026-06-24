@@ -9,14 +9,14 @@ export default function ContactSection() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const to = 'hello@jack.example'
-    const subject = encodeURIComponent('Contact from website')
+    const to = 'meshackamadi@gmail.com'
+    const subject = encodeURIComponent(`Website contact: ${name || 'Anonymous'}`)
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
   }
 
   return (
-    <section id="contact" className="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 bg-pagebg">
+    <section id="contact" className="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-28 md:py-40 bg-pagebg mt-16">
       <FadeIn delay={0} y={40} className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(2rem,8vw,80px)]">
         Contact
       </FadeIn>

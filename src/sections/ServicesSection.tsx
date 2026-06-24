@@ -2,11 +2,11 @@ import React from 'react'
 import FadeIn from '../components/FadeIn'
 
 const SERVICES = [
-  { title: '3D Modeling', desc: 'Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.' },
-  { title: 'Rendering', desc: 'High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.' },
-  { title: 'Motion Design', desc: 'Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.' },
-  { title: 'Branding', desc: 'Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence.' },
-  { title: 'Web Design', desc: 'Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.' }
+  { title: 'Web Development Services', desc: 'Build responsive, SEO-friendly & high-performance websites and web applications using modern technologies and best practices.' },
+  { title: 'Data Science & Analytics Services', desc: 'Analyze data and provide actionable insights to drive business decisions and improve performance.' },
+  { title: 'Consumer Research Services', desc: 'Conduct/Analyze consumer behavior, preferences, and market trends to inform business strategies.' },
+  { title: 'Data Analysis & Excel Services', desc: 'Build automated reports, dashboards, and templates to streamline data visualization and reporting.' },
+  { title: 'Sales Operations & Administration Services', desc: 'Streamline sales processes, manage documentation, ensure operational compliance, Track inventory and manage PPSK distribution.' }
 ]
 
 export default function ServicesSection() {
