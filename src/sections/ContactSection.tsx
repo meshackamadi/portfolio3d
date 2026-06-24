@@ -1,6 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import FadeIn from '../components/FadeIn'
 import ContactButton from '../components/ContactButton'
+
+// Create a memoized heading component
+const ContactHeading = memo(() => (
+  <div className="w-full max-w-xl">
+    <FadeIn delay={0} y={40} className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(2rem,8vw,80px)]">
+      Contact
+    </FadeIn>
+  </div>
+))
 
 export default function ContactSection() {
   const [name, setName] = useState('')
@@ -17,9 +26,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-28 md:py-40 bg-pagebg mt-16">
-      <FadeIn delay={0} y={40} className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(2rem,8vw,80px)]">
-        Contact
-      </FadeIn>
+      <ContactHeading /> 
 
       <form onSubmit={handleSubmit} className="mt-8 w-full max-w-xl">
         <p className="text-offwhite mb-6 text-center">Have a project or just want to say hi? Fill the form and I'll get back to you.</p>

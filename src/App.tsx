@@ -5,7 +5,7 @@ import AboutSection from './sections/AboutSection'
 import ServicesSection from './sections/ServicesSection'
 import ProjectsSection from './sections/ProjectsSection'
 import ContactSection from './sections/ContactSection'
-import Footer from './components/Footer'
+import Footer from './sections/Footer'
 
 export default function App() {
   return (
