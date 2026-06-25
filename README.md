@@ -1,4 +1,4 @@
-# Jack -- 3D Creator (Portfolio)
+# Mesh -- Web Developer & Data Scientist (Portfolio)
 
 Development scaffold with Vite + React + TypeScript + Tailwind + Framer Motion
 
