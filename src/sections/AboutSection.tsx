@@ -29,7 +29,7 @@ export default function AboutSection() {
       <div className="mt-8 flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
         <div className="max-w-[820px] text-center">
           <FadeIn delay={0.05} y={20} className="text-offwhite font-medium leading-relaxed text-[clamp(0.85rem,1.6vw,1.2em)]">
-            <p className="mb-6">Data Scientist + Junior Developer. I analyze data — and build tools to act on it.</p>
+            <p className="mb-6">Data Scientist + Junior Developer. I analyze data — and build seamless web experience.</p>
             <p className="mb-6">Background: Mathematics & Statistics degree · Google Data Analytics · Web Programming Certificate (in progress).</p>
             <p className="mb-6">Data skills: Python, SQL, R, statistics, visualization, and reporting systems.</p>
             <p className="mb-6">Dev skills: JavaScript, HTML/CSS, React, Git, and full-stack web applications.</p>
