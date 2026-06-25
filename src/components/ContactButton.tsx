@@ -1,4 +1,5 @@
 import React from 'react'
+import emailjs from '@emailjs/browser';
 
 export default function ContactButton() {
   const handleClick = () => {

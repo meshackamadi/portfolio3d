@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState, memo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
 
 // Create a memoized heading component
@@ -41,6 +43,7 @@ function useScrollOffset(sectionRef: React.RefObject<HTMLElement | null>) {
     if (!el) return
 
     function onScroll() {
+      if (!el) return
       const sectionTop = el.getBoundingClientRect().top + window.scrollY
       const value = (window.scrollY - sectionTop + window.innerHeight) * 0.3
       setOffset(value)
@@ -59,36 +62,93 @@ function useScrollOffset(sectionRef: React.RefObject<HTMLElement | null>) {
 export default function MarqueeSection() {
   const ref = useRef<HTMLElement | null>(null)
   const offset = useScrollOffset(ref)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   const row1 = IMAGES.slice(0, 11)
   const row2 = IMAGES.slice(11)
 
-  const tileClass = 'w-[420px] h-[270px] rounded-2xl object-cover'
+  const tileClass = 'w-[420px] h-[270px] rounded-2xl object-cover cursor-pointer hover:opacity-90 transition-opacity duration-300'
+
+  // Close modal when pressing escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedImage(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
-    <section ref={ref} className="pt-24 sm:pt-32 md:pt-40 pb-10 bg-pagebg">
+    <section ref={ref} className="pt-24 sm:pt-32 md:pt-40 pb-10 bg-pagebg relative">
       <CatalogueHeading />
       <div className="flex flex-col gap-3">
-        <div className="flex gap-3 will-change-transform transform" style={{ transform: `translateX(${offset - 200}px)` }}>
-          {Array(3).fill(null).map((_, rep) => (
-            <React.Fragment key={rep}>
-              {row1.map((src, i) => (
-                <img key={`${rep}-${i}`} src={src} className={tileClass} loading="lazy" alt="marq" />
-              ))}
-            </React.Fragment>
-          ))}
+        {/* Desktop Marquee */}
+        <div className="hidden lg:flex flex-col gap-3">
+          <div className="flex gap-3 will-change-transform transform" style={{ transform: `translateX(${offset - 200}px)` }}>
+            {Array(3).fill(null).map((_, rep) => (
+              <React.Fragment key={rep}>
+                {row1.map((src, i) => (
+                  <img key={`${rep}-${i}`} src={src} className={tileClass} loading="lazy" alt="marq" onClick={() => setSelectedImage(src)} />
+                ))}
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="flex gap-3 will-change-transform transform" style={{ transform: `translateX(${-(offset - 200)}px)` }}>
+            {Array(3).fill(null).map((_, rep) => (
+              <React.Fragment key={rep}>
+                {row2.map((src, i) => (
+                  <img key={`${rep}-r2-${i}`} src={src} className={tileClass} loading="lazy" alt="marq" onClick={() => setSelectedImage(src)} />
+                ))}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
 
-        <div className="flex gap-3 will-change-transform transform" style={{ transform: `translateX(${-(offset - 200)}px)` }}>
-          {Array(3).fill(null).map((_, rep) => (
-            <React.Fragment key={rep}>
-              {row2.map((src, i) => (
-                <img key={`${rep}-r2-${i}`} src={src} className={tileClass} loading="lazy" alt="marq" />
-              ))}
-            </React.Fragment>
+        {/* Mobile Grid */}
+        <div className="lg:hidden grid grid-cols-3 gap-2 px-3">
+          {IMAGES.map((src, i) => (
+            <img
+              key={`mobile-${i}`}
+              src={src}
+              className="w-full h-auto aspect-[4/3] rounded-lg object-cover cursor-pointer hover:opacity-90 active:scale-95 transition-all duration-200"
+              loading="lazy"
+              alt="marq"
+              onClick={() => setSelectedImage(src)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8"
+          >
+            <button
+              className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors bg-black/50 p-2 rounded-full backdrop-blur-md"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X size={24} />
+            </button>
+            <motion.img
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              src={selectedImage}
+              alt="Enlarged catalogue view"
+              className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
