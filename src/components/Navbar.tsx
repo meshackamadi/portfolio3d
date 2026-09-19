@@ -10,28 +10,26 @@ export default function Navbar() {
   const [active, setActive] = useState<string>('')
 
   useEffect(() => {
-    const ids = ['about', 'services', 'projects', 'contact']
-    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
-    if (!sections.length) return
+    const handleScroll = () => {
+      const ids = ['about', 'services', 'projects', 'contact']
+      let currentActive = ''
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let bestId = active
-        let bestRatio = 0
-        for (const e of entries) {
-          if (e.intersectionRatio > bestRatio) {
-            bestRatio = e.intersectionRatio
-            bestId = e.target.id
+      for (const id of ids) {
+        const element = document.getElementById(id)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= window.innerHeight * 0.6 && rect.bottom >= window.innerHeight * 0.4) {
+             currentActive = id
           }
         }
-        if (bestId !== active) setActive(bestId)
-      },
-      { threshold: [0.1, 0.25, 0.5, 0.75, 1], rootMargin: '-40% 0px -55% 0px' }
-    )
+      }
+      
+      setActive(prev => prev !== currentActive ? currentActive : prev)
+    }
 
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -39,16 +37,16 @@ export default function Navbar() {
       <div className="flex justify-between items-center px-6 md:px-10 h-full text-offwhite">
         <div />
         <div className="flex gap-6 md:gap-8 lg:gap-10 uppercase tracking-wider font-medium text-sm md:text-lg lg:text-[1.4rem]">
-          <button onClick={() => scrollToId('about')} className={`transition-all duration-200 ${active === 'about' ? 'opacity-100 border-b-2 border-offwhite pb-1' : 'opacity-70'}`}>
+          <button onClick={() => scrollToId('about')} className={`transition-all duration-200 ${active === 'about' ? 'opacity-100 underline underline-offset-[6px] decoration-2' : 'opacity-70 hover:opacity-100'}`}>
             About
           </button>
-          <button onClick={() => scrollToId('services')} className={`transition-all duration-200 ${active === 'services' ? 'opacity-100 border-b-2 border-offwhite pb-1' : 'opacity-70'}`}>
+          <button onClick={() => scrollToId('services')} className={`transition-all duration-200 ${active === 'services' ? 'opacity-100 underline underline-offset-[6px] decoration-2' : 'opacity-70 hover:opacity-100'}`}>
             Services
           </button>
-          <button onClick={() => scrollToId('projects')} className={`transition-all duration-200 ${active === 'projects' ? 'opacity-100 border-b-2 border-offwhite pb-1' : 'opacity-70'}`}>
+          <button onClick={() => scrollToId('projects')} className={`transition-all duration-200 ${active === 'projects' ? 'opacity-100 underline underline-offset-[6px] decoration-2' : 'opacity-70 hover:opacity-100'}`}>
             Projects
           </button>
-          <button onClick={() => scrollToId('contact')} className={`transition-all duration-200 ${active === 'contact' ? 'opacity-100 border-b-2 border-offwhite pb-1' : 'opacity-70'}`}>
+          <button onClick={() => scrollToId('contact')} className={`transition-all duration-200 ${active === 'contact' ? 'opacity-100 underline underline-offset-[6px] decoration-2' : 'opacity-70 hover:opacity-100'}`}>
             Contact
           </button>
         </div>
