@@ -1,8 +1,6 @@
-import React, { useState, memo, useRef, useEffect } from 'react'
-import { Send } from 'lucide-react'
+import React, { useState, memo, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import FadeIn from '../components/FadeIn'
-import ContactButton from '../components/ContactButton'
 
 // created memoized heading component
 const ContactHeading = memo(() => (

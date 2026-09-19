@@ -6,14 +6,14 @@ type Props = React.PropsWithChildren<{
   duration?: number
   x?: number
   y?: number
-  as?: any
+  as?: keyof React.JSX.IntrinsicElements
   className?: string
 }>
 
 export default function FadeIn({ children, delay = 0.0, duration = 0.7, x = 0, y = 30, as = 'div', className }: Props) {
-  const Motion = motion(as)
+  const Component = motion[as as keyof typeof motion] as React.ElementType
   return (
-    <Motion
+    <Component
       className={className}
       initial={{ opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -21,6 +21,6 @@ export default function FadeIn({ children, delay = 0.0, duration = 0.7, x = 0, y
       transition={{ delay, duration, ease: [0.25, 0.1, 0.25, 1] }}
     >
       {children}
-    </Motion>
+    </Component>
   )
 }

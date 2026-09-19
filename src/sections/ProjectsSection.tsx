@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
-import { motion, useScroll } from 'framer-motion'
+import { motion } from 'framer-motion'
 import FadeIn from '../components/FadeIn'
 import LiveProjectButton from '../components/LiveProjectButton'
 
@@ -42,7 +42,7 @@ const PROJECTS = [
 
 export default function ProjectsSection() {
   const ref = useRef<HTMLElement | null>(null)
-  const { scrollYProgress } = useScroll({ target: ref })
+
 
   const [modalSrc, setModalSrc] = useState<string | null>(null)
   const [modalTitle, setModalTitle] = useState<string | null>(null)

@@ -23,7 +23,7 @@ export default function Magnet({ children, padding = 150, strength = 3, activeTr
       const cy = rect.top + rect.height / 2
       const dx = e.clientX - cx
       const dy = e.clientY - cy
-      const distX = Math.abs(e.clientX - Math.max(rect.left - padding, Math.min(e.clientX, rect.right + padding)))
+
 
       const within = e.clientX >= rect.left - padding && e.clientX <= rect.right + padding && e.clientY >= rect.top - padding && e.clientY <= rect.bottom + padding
 

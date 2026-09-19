@@ -1,5 +1,16 @@
 import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
+
+function AnimatedChar({ c, index, total, scrollYProgress }: { c: string, index: number, total: number, scrollYProgress: MotionValue<number> }) {
+  const start = index / total
+  const end = start + 0.2
+  const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1])
+  return (
+    <motion.span style={{ opacity }} className="inline-block">
+      {c}
+    </motion.span>
+  )
+}
 
 export default function AnimatedText({ text }: { text: string }) {
   const ref = useRef<HTMLDivElement | null>(null)
@@ -10,16 +21,9 @@ export default function AnimatedText({ text }: { text: string }) {
     <div ref={ref} className="relative w-full max-w-[560px]">
       <div aria-hidden className="visibility-hidden text-transparent">{text}</div>
       <div className="relative text-center">
-        {chars.map((c, i) => {
-          const start = i / chars.length
-          const end = start + 0.2
-          const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1])
-          return (
-            <motion.span key={i} style={{ opacity }} className="inline-block">
-              {c}
-            </motion.span>
-          )
-        })}
+        {chars.map((c, i) => (
+          <AnimatedChar key={i} c={c} index={i} total={chars.length} scrollYProgress={scrollYProgress} />
+        ))}
       </div>
     </div>
   )
