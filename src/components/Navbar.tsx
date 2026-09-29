@@ -11,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const ids = ['about', 'services', 'projects', 'contact']
+      const ids = ['catalogue', 'about', 'services', 'projects', 'contact']
       let currentActive = ''
 
       for (const id of ids) {
@@ -19,11 +19,11 @@ export default function Navbar() {
         if (element) {
           const rect = element.getBoundingClientRect()
           if (rect.top <= window.innerHeight * 0.6 && rect.bottom >= window.innerHeight * 0.4) {
-             currentActive = id
+            currentActive = id
           }
         }
       }
-      
+
       setActive(prev => prev !== currentActive ? currentActive : prev)
     }
 
@@ -37,6 +37,9 @@ export default function Navbar() {
       <div className="flex justify-between items-center px-6 md:px-10 h-full text-offwhite">
         <div />
         <div className="flex gap-6 md:gap-8 lg:gap-10 uppercase tracking-wider font-medium text-sm md:text-lg lg:text-[1.4rem]">
+          <button onClick={() => scrollToId('catalogue')} className={`transition-all duration-200 ${active === 'catalogue' ? 'opacity-100 underline underline-offset-[6px] decoration-2' : 'opacity-70 hover:opacity-100'}`}>
+            Catalogue
+          </button>
           <button onClick={() => scrollToId('about')} className={`transition-all duration-200 ${active === 'about' ? 'opacity-100 underline underline-offset-[6px] decoration-2' : 'opacity-70 hover:opacity-100'}`}>
             About
           </button>

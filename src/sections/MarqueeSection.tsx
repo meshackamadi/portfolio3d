@@ -79,7 +79,7 @@ export default function MarqueeSection() {
   }, [])
 
   return (
-    <section ref={ref} className="pt-24 sm:pt-32 md:pt-40 pb-10 bg-pagebg relative">
+    <section id="catalogue" ref={ref} className="pt-24 sm:pt-32 md:pt-40 pb-10 bg-pagebg relative">
       <CatalogueHeading />
       <div className="flex flex-col gap-3">
         {/* Desktop Marquee */}
